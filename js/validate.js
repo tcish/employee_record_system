@@ -71,7 +71,7 @@ form.addEventListener("submit", function(e) {
    }
 
    //       DESIGNATION
-   if (designation.value.trim() === "") {
+   if (designation.value === "") {
       message4.innerHTML = "Enter designation!"
       designation.style.borderBottom = "2px solid #FF0000"
       error = true
@@ -90,7 +90,7 @@ form.addEventListener("submit", function(e) {
       if(!phRegex.test(phoneNum.value)) {
          message5.innerHTML = "Contact number not valid!"
          phoneNum.style.borderBottom = "2px solid #FF0000"
-         error = true;
+         error = true
       } else {
          message5.innerHTML = ""
          phoneNum.style.borderBottom = ""

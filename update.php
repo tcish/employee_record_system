@@ -19,7 +19,7 @@
       $empID = strip_tags($_POST["empID"]);
       $name = strip_tags($_POST["name"]);
       $email = trim(strip_tags($_POST["email"]));
-      $designation = strip_tags($_POST["designation"]);
+      $designation_id = strip_tags($_POST["designation"]);
       $phoneNum = strip_tags($_POST["phoneNum"]);
       $bloodGrp = strip_tags($_POST["bloodGrp"]);
       $Image_name = $_FILES["picture"]["name"];
@@ -43,7 +43,7 @@
                            employee_id = '$empID',
                            name = '$name',
                            email = '$email',
-                           designation = '$designation',
+                           designation_id = '$designation_id',
                            contact = '$phoneNum',
                            blood_group = '$bloodGrp',
                            photo = '$unique_name_generate'
@@ -59,7 +59,7 @@
                            employee_id = '$empID',
                            name = '$name',
                            email = '$email',
-                           designation = '$designation',
+                           designation_id = '$designation_id',
                            contact = '$phoneNum',
                            blood_group = '$bloodGrp'
                            WHERE id = '$id'";
@@ -90,11 +90,29 @@
                   <input type="text" name="email" id="email" placeholder="Please Enter Email" value="<?php echo $data["email"]; ?>">
                   <span class="error_message" id="message3"></span>
                </div>
+
                <div class="form__group">
                   <label for="designation">Designation:</label>
-                  <input type="text" name="designation" id="designation" placeholder="Please Enter Designation" value="<?php echo $data["designation"]; ?>">
+                  <select name="designation" id="designation">
+                     <option value="">Select Designation</option>
+
+                     <?php
+                        $design_query = "SELECT * FROM designation_list";
+                        $design_sql = $connection->prepare($design_query);
+                        $design_sql->execute();
+                        while ($design_fetch = $design_sql->fetch(PDO::FETCH_ASSOC)) {
+                           if ($design_fetch["id"] === $data["designation_id"]) {
+                              echo "<option selected value='".$design_fetch['id']."'>".$design_fetch['design_name']."</option>";
+                           } else {
+                              echo "<option value='".$design_fetch['id']."'>".$design_fetch['design_name']."</option>";
+                           }
+                        }
+                     ?>
+
+                  </select>
                   <span class="error_message" id="message4"></span>
                </div>
+               
                <div class="form__group">
                   <label for="phoneNum">Contact Number:</label>
                   <input type="text" name="phoneNum" id="phoneNum" placeholder="Please Enter Contact Number" value="<?php echo $data["contact"]; ?>">

@@ -9,7 +9,7 @@
       $empID = strip_tags($_POST["empID"]);
       $name = strip_tags($_POST["name"]);
       $email = trim(strip_tags($_POST["email"]));
-      $designation = strip_tags($_POST["designation"]);
+      $designation_id = strip_tags($_POST["designation"]);
       $phoneNum = strip_tags($_POST["phoneNum"]);
       $bloodGrp = strip_tags($_POST["bloodGrp"]);
       $Image_name = $_FILES["picture"]["name"];
@@ -20,15 +20,8 @@
       $unique_name_generate = rand(1000000, 100000000).".".$lowercase_img_ext_name;
       $image_directory = 'img/';
 
-      $insert_query = "INSERT INTO user_data(employee_id, name, email, designation, contact, blood_group, photo) VALUES(:employee_id, :name, :email, :designation, :contact, :blood_group, :photo)";
-      $insert_sql= $connection->prepare($insert_query);
-      $insert_sql->bindParam(":employee_id", $empID);
-      $insert_sql->bindParam(":name", $name);
-      $insert_sql->bindParam(":email", $email);
-      $insert_sql->bindParam(":designation", $designation);
-      $insert_sql->bindParam(":contact", $phoneNum);
-      $insert_sql->bindParam(":blood_group", $bloodGrp);
-      $insert_sql->bindParam(":photo", $unique_name_generate);
+      $insert_query = "INSERT INTO user_data(employee_id, name, email, designation_id, contact, blood_group, photo) VALUES('$empID', '$name', '$email', '$designation_id', '$phoneNum', '$bloodGrp', '$unique_name_generate')";
+      $insert_sql = $connection->prepare($insert_query);
       $insert_sql->execute();
 
       move_uploaded_file($Image_temp_location, $image_directory.$unique_name_generate);
@@ -57,8 +50,8 @@
             <span class="error_message" id="message3"></span>
          </div>
          <div class="form__group">
-            <label for="designation">Select Categories:</label>
-            <select name="designation">
+            <label for="designation">Designation:</label>
+            <select name="designation" id="designation">
                <option value="">Select Designation</option>
 
                <?php
@@ -71,8 +64,8 @@
                ?>
 
             </select>
+            <span class="error_message" id="message4"></span>
          </div>
-         
          <div class="form__group">
             <label for="phoneNum">Contact Number:</label>
             <input type="text" name="phoneNum" id="phoneNum" placeholder="Please Enter Contact Number">
