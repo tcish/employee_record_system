@@ -67,9 +67,20 @@
    background: none;
 }
 
-.container .form__content .submit__btn,
-.container .form__content .back-btn {
+.container .form__content .form__group:nth-child(7) {
+   display: block;
+}
+
+.container .form__content .btn__group {
    width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.container .form__content .btn__group button,
+.container .form__content .btn__group a {
+   width: 50%;
    height: 2.5rem;
    color: #fff;
    background-color: #28a745;
@@ -77,17 +88,18 @@
    cursor: pointer;
 }
 
-.container .form__content .back-btn {
-   display: inline-block;
-   text-align: center;
-   margin-top: 0.5rem;
+.container .form__content .btn__group a {
    text-decoration: none;
    display: flex;
    align-items: center;
    justify-content: center;
+   background: crimson;
+   border-color: crimson;
+   margin-left: 10px;
+   
 }
 
-.container .form__content .back-btn:active {
+.container .form__content .btn__group a:active {
    border-style: inset;
 }
 
@@ -116,7 +128,7 @@
    min-height: 100vh;
    padding: 50px 50px 0 50px;
 }
-.tbl_container h1{
+.tbl_container h1 {
    font-size: 30px;
    color: #fff;
    text-transform: uppercase;
@@ -151,7 +163,6 @@
    width: 100%;
    background: #000;
 }
-
 
 th {
    text-align: center;

@@ -145,8 +145,10 @@
                   </div>
                   <span class="error_message" id="message7"></span>
                </div>
-               <button type="submit" name="submit" class="submit__btn">Submit</button>
-               <a href="index.php" class="back-btn">Go Back</a>
+               <div class="btn__group">
+                  <button type="submit" name="submit">Submit</button>
+                  <a href="index.php">Go Back</a>
+               </div>
             </form>
          </div>
       </div>
