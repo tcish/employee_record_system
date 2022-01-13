@@ -18,7 +18,7 @@
       array( 'db' => 'email',   'dt' => 3),
       array( 'db' => 'designation_id', 'dt' => 4),
       array( 'db' => 'contact','dt' => 5),
-      array( 'db' => 'blood_group','dt' => 6),
+      array( 'db' => 'blood_group_id','dt' => 6),
       array( 'db' => 'photo','dt' => 7)
    );   
    

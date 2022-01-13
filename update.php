@@ -21,7 +21,7 @@
       $email = trim(strip_tags($_POST["email"]));
       $designation_id = strip_tags($_POST["designation"]);
       $phoneNum = strip_tags($_POST["phoneNum"]);
-      $bloodGrp = strip_tags($_POST["bloodGrp"]);
+      $bloodGrp_id = strip_tags($_POST["bloodGrp"]);
       $Image_name = $_FILES["picture"]["name"];
       $Image_temp_location = $_FILES["picture"]["tmp_name"];
 
@@ -45,7 +45,7 @@
                            email = '$email',
                            designation_id = '$designation_id',
                            contact = '$phoneNum',
-                           blood_group = '$bloodGrp',
+                           blood_group_id = '$bloodGrp_id',
                            photo = '$unique_name_generate'
                            WHERE id = '$id'";
          $update = $connection->prepare($update_data);
@@ -61,7 +61,7 @@
                            email = '$email',
                            designation_id = '$designation_id',
                            contact = '$phoneNum',
-                           blood_group = '$bloodGrp'
+                           blood_group_id = '$bloodGrp_id'
                            WHERE id = '$id'";
          $update = $connection->prepare($update_data);
          $update->execute();
@@ -90,7 +90,6 @@
                   <input type="text" name="email" id="email" placeholder="Please Enter Email" value="<?php echo $data["email"]; ?>">
                   <span class="error_message" id="message3"></span>
                </div>
-
                <div class="form__group">
                   <label for="designation">Designation:</label>
                   <select name="designation" id="designation">
@@ -112,15 +111,30 @@
                   </select>
                   <span class="error_message" id="message4"></span>
                </div>
-               
                <div class="form__group">
                   <label for="phoneNum">Contact Number:</label>
                   <input type="text" name="phoneNum" id="phoneNum" placeholder="Please Enter Contact Number" value="<?php echo $data["contact"]; ?>">
                   <span class="error_message" id="message5"></span>
                </div>
                <div class="form__group">
-                  <label for="designation">Blood Group:</label>
-                  <input type="text" name="bloodGrp" id="bloodGrp" placeholder="Please Enter Blood Group" value="<?php echo $data["blood_group"]; ?>">
+                  <label for="bloodGrp">Blood Group:</label>
+                  <select name="bloodGrp" id="bloodGrp">
+                     <option value="">Select Blood Group</option>
+
+                     <?php
+                        $bldGrp_query = "SELECT * FROM bloodgroup_list";
+                        $bldGrp_sql = $connection->prepare($bldGrp_query);
+                        $bldGrp_sql->execute();
+                        while ($bldGrp_fetch = $bldGrp_sql->fetch(PDO::FETCH_ASSOC)) {
+                           if ($bldGrp_fetch["id"] === $data["blood_group_id"]) {
+                              echo "<option selected value='".$bldGrp_fetch['id']."'>".$bldGrp_fetch['blood_type']."</option>";
+                           } else {
+                              echo "<option value='".$bldGrp_fetch['id']."'>".$bldGrp_fetch['blood_type']."</option>";
+                           }
+                        }
+                     ?>
+
+                  </select>
                   <span class="error_message" id="message6"></span>
                </div>
                <div class="form__group">

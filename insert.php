@@ -11,7 +11,7 @@
       $email = trim(strip_tags($_POST["email"]));
       $designation_id = strip_tags($_POST["designation"]);
       $phoneNum = strip_tags($_POST["phoneNum"]);
-      $bloodGrp = strip_tags($_POST["bloodGrp"]);
+      $bloodGrp_id = strip_tags($_POST["bloodGrp"]);
       $Image_name = $_FILES["picture"]["name"];
       $Image_temp_location = $_FILES["picture"]["tmp_name"];
 
@@ -20,7 +20,7 @@
       $unique_name_generate = rand(1000000, 100000000).".".$lowercase_img_ext_name;
       $image_directory = 'img/';
 
-      $insert_query = "INSERT INTO user_data(employee_id, name, email, designation_id, contact, blood_group, photo) VALUES('$empID', '$name', '$email', '$designation_id', '$phoneNum', '$bloodGrp', '$unique_name_generate')";
+      $insert_query = "INSERT INTO user_data(employee_id, name, email, designation_id, contact, blood_group_id, photo) VALUES('$empID', '$name', '$email', '$designation_id', '$phoneNum', '$bloodGrp_id', '$unique_name_generate')";
       $insert_sql = $connection->prepare($insert_query);
       $insert_sql->execute();
 
@@ -72,8 +72,20 @@
             <span class="error_message" id="message5"></span>
          </div>
          <div class="form__group">
-            <label for="designation">Blood Group:</label>
-            <input type="text" name="bloodGrp" id="bloodGrp" placeholder="Please Enter Blood Group">
+            <label for="bloodGrp">Blood Group:</label>
+            <select name="bloodGrp" id="bloodGrp">
+               <option value="">Select Blood Group</option>
+
+               <?php
+                  $bldGrp_query = "SELECT * FROM bloodgroup_list";
+                  $bldGrp_sql = $connection->prepare($bldGrp_query);
+                  $bldGrp_sql->execute();
+                  while ($bldGrp_fetch = $bldGrp_sql->fetch(PDO::FETCH_ASSOC)) {
+                     echo "<option value='".$bldGrp_fetch['id']."'>".$bldGrp_fetch['blood_type']."</option>";
+                  }
+               ?>
+
+            </select>
             <span class="error_message" id="message6"></span>
          </div>
          <div class="form__group">
