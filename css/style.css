@@ -22,14 +22,13 @@
 }
 
 .container .form__content h1 {
-   margin-bottom: 1rem;
    text-align: center;
    color: #17a2b8;
 }
 
 .container .form__content .form__group {
    display: inline-block;
-   margin-bottom: 2rem;
+   margin-top: 2rem;
 }
 
 .container .form__content .form__group label {
@@ -96,7 +95,6 @@
    background: crimson;
    border-color: crimson;
    margin-left: 10px;
-   
 }
 
 .container .form__content .btn__group a:active {
@@ -105,7 +103,7 @@
 
 /* ERROR MESSAGE */
 .error_message {
-   display: block;
+   display: table;
    color: red;
    font-size: 1.2rem;
 }

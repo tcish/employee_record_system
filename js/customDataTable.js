@@ -5,24 +5,24 @@ $(document).ready( function () {
       ajax: "fetch.php",
       columns: [
          {
-            data: '1'
+            data: 'employee_id'
          }, {
-            data: '2'
+            data: 'name'
          }, {
-            data: '3'
+            data: 'email'
          }, {
-            data: '4'
+            data: 'design_name'
          }, {
-            data: '5'
+            data: 'contact'
          }, {
-            data: '6'
+            data: 'blood_type'
          }, {
-            data: '7',
+            data: 'photo',
             render: (data) => {
                return '<img src="img/' + data + '" width="80px">'
             }
          }, {
-            data: '0',
+            data: 'id',
             render: (data) => {
                return '<a class="edit-btn" href="update.php?id=' + data + '">Edit</a>'
                + " || " + '<a class="del-btn" href=' + '?delete_id=' + data + '>Delete</a>'
