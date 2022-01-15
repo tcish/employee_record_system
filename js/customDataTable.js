@@ -2,7 +2,10 @@ $(document).ready( function () {
    $('#employeeData').DataTable({
       processing: true,
       serverSide: true,
-      ajax: "fetch.php",
+      ajax: {
+         url: "fetch.php",
+         type: "POST"
+       },
       columns: [
          {
             data: 'employee_id'
