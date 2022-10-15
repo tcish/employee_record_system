@@ -70,7 +70,7 @@
       }
    }
 
-   if ($fetch_sql->rowCount() > 0 && $id === $data["id"]) { ?>
+   if ($fetch_sql->rowCount() > 0 && $id == $data["id"]) { ?>
       <div class="container">
          <div class="form__content">
             <h1>Update Employee Data</h1>
